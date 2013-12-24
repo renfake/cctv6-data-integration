@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cctv6</groupId>
+	<artifactId>cctv6-data-integration-parent</artifactId>
+	<version>0.1</version>
+	<name>cctv6-data-integration-parent</name>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.integration.version>3.0.0.RELEASE</spring.integration.version>
+		<spring.version>3.2.6.RELEASE</spring.version>
+		<log4j.version>1.2.17</log4j.version>
+		<dbcp.version>1.4</dbcp.version>
+		<mysql.version>5.1.17</mysql.version>
+		<mybatis.version>3.2.3</mybatis.version>
+		<mybatis.spring.version>1.2.0</mybatis.spring.version>
+		<commons-lang.version>2.6</commons-lang.version>
+	</properties>
+	<modules>
+		<module>cctv6-data-integration-pipeline</module>
+	</modules>
+</project>

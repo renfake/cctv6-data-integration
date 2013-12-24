@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        	http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/integration 
+            http://www.springframework.org/schema/integration/spring-integration.xsd
+            http://www.springframework.org/schema/integration/ws 
+            http://www.springframework.org/schema/integration/ip/spring-integration-ws.xsd">
+	<int-ws:outbound-gateway id="movieGateway"
+		request-channel="ws-to-etl-channel" uri="${dayang.ws.endpoint}" marshaller="someMarshaller"
+		unmarshaller="someUnmarshaller" />
+</beans>                
