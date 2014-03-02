@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
-	xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-        	http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/integration 
-            http://www.springframework.org/schema/integration/spring-integration.xsd
-            http://www.springframework.org/schema/integration/ws 
-            http://www.springframework.org/schema/integration/ip/spring-integration-ws.xsd">
-	<int-ws:outbound-gateway id="movieGateway"
-		request-channel="ws-to-etl-channel" uri="${dayang.ws.endpoint}" marshaller="someMarshaller"
-		unmarshaller="someUnmarshaller" />
-</beans>                
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:ws="http://www.springframework.org/schema/integration/ws"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration
+		http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration/ws
+		http://www.springframework.org/schema/integration/ws/spring-integration-ws.xsd
+		http://www.springframework.org/schema/oxm 
+        http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+
+	<context:property-placeholder location="classpath*:META-INF/endpoint.properties" />
+	<int:annotation-config />
+	<int:message-history />
+
+	<beans:import resource="data-pipeline-common.xml" />
+
+	<!-- <oxm:jaxb2-marshaller id="marshaller">
+		<oxm:class-to-be-bound name="au.test.weather.ws.GetTemperaturesResponse" />
+	</oxm:jaxb2-marshaller> -->
+
+	<int:chain input-channel="oceanWsRequestChannel"
+		output-channel="oceanWsResponseChannel">
+		<ws:header-enricher>
+			<ws:soap-action value="http://WebXml.com.cn/getWeatherbyCityName" />
+		</ws:header-enricher>
+		<ws:outbound-gateway uri="${ocean.ws.endpoint}" />
+	</int:chain>
+
+	<int:service-activator input-channel="oceanWsResponseChannel"
+		method="process">
+		<beans:bean
+			class="com.cctv6.data.pipeline.OceanWebServiceResponseHandleServiceActivator" />
+	</int:service-activator>
+
+	<int:gateway id="wsRequest"
+		service-interface="com.cctv6.data.pipeline.OceanWebServiceRequest">
+		<int:method name="request" request-channel="oceanWsRequestChannel" />
+	</int:gateway>
+</beans>              

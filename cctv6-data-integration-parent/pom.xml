@@ -17,6 +17,7 @@
 		<mybatis.version>3.2.3</mybatis.version>
 		<mybatis.spring.version>1.2.0</mybatis.spring.version>
 		<commons-lang.version>2.6</commons-lang.version>
+		<junit.version>4.8.2</junit.version>
 	</properties>
 	<modules>
 		<module>cctv6-data-integration-pipeline</module>

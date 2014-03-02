@@ -2,12 +2,30 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:int="http://www.springframework.org/schema/integration"
-        xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
+        xmlns:task="http://www.springframework.org/schema/task"        
         xsi:schemaLocation="http://www.springframework.org/schema/beans 
         	http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/integration 
             http://www.springframework.org/schema/integration/spring-integration.xsd
-            http://www.springframework.org/schema/integration/ws 
-            http://www.springframework.org/schema/integration/ip/spring-integration-ws.xsd">
-			           
+            http://www.springframework.org/schema/task
+            http://www.springframework.org/schema/task/spring-task.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">	
+	
+	<int:channel id="oceanWsRequestChannel">
+		<int:dispatcher task-executor="ocean-ws-request-executor"/>
+	</int:channel>
+	
+	<int:channel id="oceanWsResponseChannel">
+		<int:dispatcher task-executor="ocean-ws-response-executor"/>
+	</int:channel>	         
+	
+	<task:executor id="ocean-ws-request-executor"
+	               pool-size="5"
+	               queue-capacity="10"
+	               keep-alive="120"/>
+	<task:executor id="ocean-ws-response-executor"
+	               pool-size="10"
+	               queue-capacity="30"
+	               keep-alive="120"/>	           
 </beans>                
