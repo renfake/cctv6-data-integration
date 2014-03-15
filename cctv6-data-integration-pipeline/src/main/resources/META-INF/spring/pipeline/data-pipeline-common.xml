@@ -12,20 +12,39 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">	
 	
-	<int:channel id="oceanWsRequestChannel">
-		<int:dispatcher task-executor="ocean-ws-request-executor"/>
+	<int:channel id="oceanGetItemDetailRequestChannel">
+		<int:dispatcher task-executor="ocean-getitemdetail-request-executor"/>
 	</int:channel>
 	
-	<int:channel id="oceanWsResponseChannel">
-		<int:dispatcher task-executor="ocean-ws-response-executor"/>
-	</int:channel>	         
+	<int:channel id="oceanGetItemDetailResponseChannel">
+		<int:dispatcher task-executor="ocean-getitemdetail-response-executor"/>
+	</int:channel>	                  
 	
-	<task:executor id="ocean-ws-request-executor"
+	<task:executor id="ocean-getitemdetail-request-executor"
 	               pool-size="5"
 	               queue-capacity="10"
 	               keep-alive="120"/>
-	<task:executor id="ocean-ws-response-executor"
+	<task:executor id="ocean-getitemdetail-response-executor"
 	               pool-size="10"
 	               queue-capacity="30"
-	               keep-alive="120"/>	           
+	               keep-alive="120"/>
+	               
+	<!-- for query service -->
+	<int:channel id="oceanQueryServiceRequestChannel">
+		<int:dispatcher task-executor="ocean-queryservice-request-executor"/>
+	</int:channel>
+	
+	<int:channel id="oceanQueryServiceResponseChannel">
+		<int:dispatcher task-executor="ocean-queryservice-response-executor"/>
+	</int:channel>	                  
+	
+	<task:executor id="ocean-queryservice-request-executor"
+	               pool-size="5"
+	               queue-capacity="10"
+	               keep-alive="120"/>
+	<task:executor id="ocean-queryservice-response-executor"
+	               pool-size="10"
+	               queue-capacity="30"
+	               keep-alive="120"/>
+          
 </beans>                

@@ -8,7 +8,7 @@
 		<groupId>com.cctv6</groupId>
 		<artifactId>cctv6-data-integration-parent</artifactId>
 		<version>0.1</version>
-		<relativePath>../cctv6-data-integartion-parent</relativePath>
+                <relativePath>../cctv6-data-integration-parent</relativePath>
 	</parent>
 	
 	<dependencies>
@@ -63,4 +63,15 @@
         	<version>${spring.version}</version>
         </dependency>
 	</dependencies>
+        <build>
+                <plugins>
+                        <plugin>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                                <configuration>
+                                        <source>1.7</source>
+                                        <target>1.7</target>
+                                </configuration>
+                        </plugin>
+                </plugins>
+        </build>
 </project>
