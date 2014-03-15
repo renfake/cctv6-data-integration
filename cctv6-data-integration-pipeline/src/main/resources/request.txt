@@ -1,0 +1,31 @@
+<getItemDetail xmlns:m="http://www.dayang.com/DYESB">
+	<getItemDetailInput>
+		<MREML xmlns="MREML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<EnvelopEntity>
+				<EnvelopVersion>1.0.2R</EnvelopVersion>
+				<SendFrom>YXYEDIT</SendFrom>
+				<SendTo>DYMAM</SendTo>
+			</EnvelopEntity>
+			<ResourceEntity>
+				<ResourceMetaDataInfo>
+					<ResourceID>
+						<ResourceUniqueID>2e6dffa611fe9ba93047dd1</ResourceUniqueID>
+					</ResourceID>
+					<Title>
+						<ResourceName>不必修改</ResourceName>
+					</Title>
+					<ResourceType>1</ResourceType>						
+					<ExtendAttribute>
+						<AttributeName>getMetaData</AttributeName>
+						<AttributeValue>True</AttributeValue>
+					</ExtendAttribute>
+				</ResourceMetaDataInfo>
+				
+			</ResourceEntity>
+			<RequestEntity>
+				<RequestEntityID>D8139C20-8BD3-4E0D-A54B-51BBAD11C7A8</RequestEntityID>
+				<Action>GetItemDetail</Action>
+			</RequestEntity>
+		</MREML>
+	</getItemDetailInput>
+</getItemDetail>
